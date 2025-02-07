@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ferramenta de Aspas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 20px;
+      white-space: pre-wrap; /* Para preservar quebras de linha ao exibir o resultado */
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ferramenta: Colocar Aspas por Linha</h1>
+  <p>Digite ou cole o texto abaixo:</p>
+  
+  <textarea id="inputTexto"></textarea>
+  <br>
+  <button onclick="colocarAspas()">Colocar aspas</button>
+
+  <h2>Resultado:</h2>
+  <div id="resultado"></div>
+
+  <script>
+    function colocarAspas() {
+      // Pega o valor do textarea
+      const texto = document.getElementById("inputTexto").value;
+
+      // Separa por quebra de linha
+      const linhas = texto.split("\n");
+
+      // Mapeia cada linha para '"linha"'
+      // .trim() remove espaços em branco do início e fim
+      const linhasComAspas = linhas
+        .filter(linha => linha.trim() !== "") // remove linhas vazias se quiser
+        .map(linha => `"${linha.trim()}"`);
+
+      // Rejunta tudo em múltiplas linhas
+      const resultadoFinal = linhasComAspas.join("\n");
+
+      // Exibe na div de resultado
+      document.getElementById("resultado").textContent = resultadoFinal;
+    }
+  </script>
+</body>
+</html>
